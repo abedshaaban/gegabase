@@ -36,7 +36,7 @@ export default function SupabaseProvider({ children }: { children: ReactNode }) 
     return () => {
       subscription.unsubscribe()
     }
-  }, [supabase, router])
+  }, [supabase])
 
   return (
     <Context.Provider value={{ supabase, session, user }}>
