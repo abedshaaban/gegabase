@@ -21,6 +21,31 @@ type Email = {
   parent: string
 }
 
+async function getTemplate({
+  params,
+  supabase,
+}: {
+  params: { id: string }
+  supabase: any
+}) {
+  let { data, error, status } = await supabase
+    .from('templates')
+    .select(`id, parent, body`)
+    .eq('id', params?.id)
+    .single()
+
+  if (error && status !== 406) {
+    console.log(error)
+  }
+
+  return {
+    templateRes: data ? data?.body : '',
+    templateMetaDataRes: data
+      ? { id: data?.id, parent: data?.parent }
+      : { id: '', parent: '' },
+  }
+}
+
 export default function Page({ params }: { params: { id: string } }) {
   const { supabase } = useSupabase()
 
@@ -62,29 +87,18 @@ export default function Page({ params }: { params: { id: string } }) {
     setLoading(false)
   }
 
-  const getTemplate = async () => {
+  const setTemplateFromRes = async () => {
     try {
-      let { data, error, status } = await supabase
-        .from('templates')
-        .select(`id, parent, body`)
-        .eq('id', params?.id)
-        .single()
-
-      if (error && status !== 406) {
-        console.log(error)
-      }
-
-      if (data) {
-        setTemplate(data?.body)
-        setTemplateMetaData({ id: data?.id, parent: data?.parent })
-      }
+      const { templateRes, templateMetaDataRes } = await getTemplate({ params, supabase })
+      setTemplate(templateRes)
+      setTemplateMetaData(templateMetaDataRes)
     } catch (error) {
       console.log('Error loading user data!', error)
     }
   }
 
   useEffect(() => {
-    getTemplate()
+    setTemplateFromRes()
     // eslint-disable-next-line
   }, [])
 
