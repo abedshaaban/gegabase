@@ -5,7 +5,6 @@ import {
   User,
   Session,
 } from '@supabase/auth-helpers-nextjs'
-import { useRouter } from 'next/navigation'
 import { ReactNode, createContext, useContext, useEffect, useState } from 'react'
 import { Database } from './database/database.types'
 
@@ -18,7 +17,6 @@ type SupabaseContext = {
 const Context = createContext<SupabaseContext | undefined>(undefined)
 
 export default function SupabaseProvider({ children }: { children: ReactNode }) {
-  const router = useRouter()
   const [supabase] = useState(() => createPagesBrowserClient<Database>())
   const [user, setUser] = useState<any>()
   const [session, setSession] = useState<any>()
@@ -29,8 +27,6 @@ export default function SupabaseProvider({ children }: { children: ReactNode }) 
     } = supabase.auth.onAuthStateChange((_event, sessionChange) => {
       setUser(sessionChange?.user)
       setSession(sessionChange)
-
-      router.refresh()
     })
 
     return () => {
