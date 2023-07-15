@@ -5,6 +5,9 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'User',
+  robots: {
+    index: false,
+  },
 }
 
 export default function Index() {

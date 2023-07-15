@@ -6,7 +6,7 @@ import { Icons } from '@/components/icons'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import Auth from '@/components/auth/AuthForm'
-import { MainNav } from '@/components/main-nav'
+import MainNav from './main-nav'
 import Link from 'next/link'
 
 export default function Index() {

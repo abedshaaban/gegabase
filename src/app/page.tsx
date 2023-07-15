@@ -11,6 +11,8 @@ export default function Page() {
             alt="templates examples"
             className="w-full"
             loading="eager"
+            width="2241px"
+            height="1635px"
           />
         </div>
         <div className="h-fit text-center py-8 flex flex-col justify-start items-center gap-4 lg:w-80 lg:items-stretch lg:text-left lg:gap-8">
@@ -30,6 +32,8 @@ export default function Page() {
             loading="lazy"
             src="/home/curved-cards-1.webp"
             alt="templates examples"
+            width="3064px"
+            height="1773px"
             className="w-full md:w-1/2 p-3 rounded-3xl shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(51,51,204,0.15)]"
           />
           <h3 className="w-full md:w-1/2 p-6">Create Stunning Templates</h3>
@@ -39,6 +43,8 @@ export default function Page() {
             loading="lazy"
             src="/home/curved-cards-2.webp"
             alt="templates examples"
+            width="3064px"
+            height="1773px"
             className="w-full md:w-1/2 p-3 rounded-3xl shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(0,255,153,0.15)]"
           />
           <h3 className="w-full md:w-1/2 p-6">Effortless Email List Growth</h3>
@@ -48,6 +54,8 @@ export default function Page() {
             loading="lazy"
             src="/home/curved-cards-3.webp"
             alt="templates examples"
+            width="3064px"
+            height="1773px"
             className="w-full md:w-1/2 p-3 rounded-3xl shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(255,102,0,0.15)]"
           />
           <h3 className="w-full md:w-1/2 p-6">Streamline Your Email Marketing Efforts</h3>
@@ -65,6 +73,8 @@ export default function Page() {
             loading="lazy"
             src="/home/step-1.webp"
             alt="step-1"
+            width="1993px"
+            height="910px"
             className="w-full md:w-1/2 rounded-sm shadow-[rgba(6,_24,_44,_0.4)_0px_0px_0px_2px,_rgba(6,_24,_44,_0.65)_0px_4px_6px_-1px,_rgba(255,_255,_255,_0.08)_0px_1px_0px_inset]"
           />
 
@@ -86,6 +96,8 @@ export default function Page() {
             loading="lazy"
             src="/home/step-2.webp"
             alt="step-2"
+            width="1496px"
+            height="913px"
             className="w-full md:w-1/2 rounded-sm shadow-[rgba(6,_24,_44,_0.4)_0px_0px_0px_2px,_rgba(6,_24,_44,_0.65)_0px_4px_6px_-1px,_rgba(255,_255,_255,_0.08)_0px_1px_0px_inset]"
           />
 
@@ -104,6 +116,8 @@ export default function Page() {
             loading="lazy"
             src="/home/step-3.webp"
             alt="step-3"
+            width="1462px"
+            height="913px"
             className="w-full md:w-1/2 rounded-sm shadow-[rgba(6,_24,_44,_0.4)_0px_0px_0px_2px,_rgba(6,_24,_44,_0.65)_0px_4px_6px_-1px,_rgba(255,_255,_255,_0.08)_0px_1px_0px_inset]"
           />
 
@@ -121,6 +135,8 @@ export default function Page() {
             loading="lazy"
             src="/home/step-4.webp"
             alt="step-4"
+            width="1490px"
+            height="910px"
             className="w-full md:w-1/2 rounded-sm shadow-[rgba(6,_24,_44,_0.4)_0px_0px_0px_2px,_rgba(6,_24,_44,_0.65)_0px_4px_6px_-1px,_rgba(255,_255,_255,_0.08)_0px_1px_0px_inset]"
           />
 
@@ -138,6 +154,8 @@ export default function Page() {
             loading="lazy"
             src="/home/step-5.webp"
             alt="step-5"
+            width="1492px"
+            height="910px"
             className="w-full md:w-1/2 rounded-sm shadow-[rgba(6,_24,_44,_0.4)_0px_0px_0px_2px,_rgba(6,_24,_44,_0.65)_0px_4px_6px_-1px,_rgba(255,_255,_255,_0.08)_0px_1px_0px_inset]"
           />
 
@@ -155,6 +173,8 @@ export default function Page() {
             loading="lazy"
             src="/home/step-6.webp"
             alt="step-6"
+            width="1496px"
+            height="913px"
             className="w-full md:w-1/2 rounded-sm shadow-[rgba(6,_24,_44,_0.4)_0px_0px_0px_2px,_rgba(6,_24,_44,_0.65)_0px_4px_6px_-1px,_rgba(255,_255,_255,_0.08)_0px_1px_0px_inset]"
           />
 
@@ -172,6 +192,8 @@ export default function Page() {
             loading="lazy"
             src="/home/step-7.webp"
             alt="step-7"
+            width="1496px"
+            height="913px"
             className="w-full md:w-1/2 rounded-sm shadow-[rgba(6,_24,_44,_0.4)_0px_0px_0px_2px,_rgba(6,_24,_44,_0.65)_0px_4px_6px_-1px,_rgba(255,_255,_255,_0.08)_0px_1px_0px_inset]"
           />
 
@@ -189,6 +211,8 @@ export default function Page() {
             loading="lazy"
             src="/home/step-8.webp"
             alt="step-8"
+            width="1496px"
+            height="913px"
             className="w-full md:w-1/2 rounded-sm shadow-[rgba(6,_24,_44,_0.4)_0px_0px_0px_2px,_rgba(6,_24,_44,_0.65)_0px_4px_6px_-1px,_rgba(255,_255,_255,_0.08)_0px_1px_0px_inset]"
           />
 
@@ -207,6 +231,8 @@ export default function Page() {
             loading="lazy"
             src="/home/step-9.webp"
             alt="step-9"
+            width="1496px"
+            height="913px"
             className="w-full md:w-1/2 rounded-sm shadow-[rgba(6,_24,_44,_0.4)_0px_0px_0px_2px,_rgba(6,_24,_44,_0.65)_0px_4px_6px_-1px,_rgba(255,_255,_255,_0.08)_0px_1px_0px_inset]"
           />
 
@@ -224,6 +250,8 @@ export default function Page() {
             loading="lazy"
             src="/home/step-10.webp"
             alt="step-10"
+            width="1496px"
+            height="913px"
             className="w-full md:w-1/2 rounded-sm shadow-[rgba(6,_24,_44,_0.4)_0px_0px_0px_2px,_rgba(6,_24,_44,_0.65)_0px_4px_6px_-1px,_rgba(255,_255,_255,_0.08)_0px_1px_0px_inset]"
           />
 

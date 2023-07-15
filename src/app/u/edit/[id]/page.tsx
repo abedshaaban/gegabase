@@ -9,6 +9,9 @@ export async function generateMetadata({
   const title = `Template ${params?.id}` as string
   return {
     title: title,
+    robots: {
+      index: false,
+    },
   }
 }
 
