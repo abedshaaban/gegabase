@@ -21,6 +21,14 @@ type Email = {
   parent: string
 }
 
+async function GetTemplateRes(id: string) {
+  const res: any = await fetch(`/api/template?id=${id}`, {
+    cache: 'no-store',
+  })
+  const response = await res.json()
+  return response
+}
+
 export default function Page({ params }: { params: { id: string } }) {
   const { supabase } = useSupabase()
 
@@ -64,10 +72,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
   const setTemplateFromRes = async () => {
     try {
-      const res: any = await fetch(`/api/template?id=${params?.id}`, {
-        cache: 'no-store',
-      })
-      const { data } = await res.json()
+      const { data } = await GetTemplateRes(params?.id)
 
       setTemplate(data?.body)
       setTemplateMetaData({ id: data?.id, parent: data?.parent })
