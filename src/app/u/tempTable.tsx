@@ -25,15 +25,29 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
+import { Template } from '@/types/template'
 
-type Template = {
+type RetrievedTemplate = {
   id: string
   name: string
 }
 
 export default function TempTable() {
   const { supabase, user } = useSupabase()
-  const [templates, setTemplates] = useState<Template[]>()
+  const [templates, setTemplates] = useState<RetrievedTemplate[]>()
+  const [freeTemplateVersion, setFreeTemplateVersion] = useState<Template>({
+    btn: {
+      at: 'Submit',
+      type: 5,
+      color: '#ffffff',
+      bg_color: '#000000',
+    },
+    color: '#000000',
+    title: 'Join Our Email List!',
+    bg_color: '#a9acfe',
+    description:
+      'Stay connected, be the first one to know, and get special offers. Join our email list for exclusive updates and exciting opportunities. Sign up today!',
+  })
   const [loading, setLoading] = useState(false)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const { toast } = useToast()
@@ -59,9 +73,19 @@ export default function TempTable() {
     }
     setLoading(false)
   }
+  const GetFreeTemplate = async () => {
+    if (window?.localStorage?.getItem('free-template')) {
+      const gotFreeTemplate = window?.localStorage?.getItem('free-template')
+      setFreeTemplateVersion(JSON.parse(gotFreeTemplate as any))
+    }
+  }
 
   useEffect(() => {
     getTemplates()
+    if (window) {
+      GetFreeTemplate()
+    }
+
     // eslint-disable-next-line
   }, [])
 
@@ -75,19 +99,7 @@ export default function TempTable() {
             id: nanoid(9),
             name: 'template-1',
             parent: user?.id,
-            body: {
-              btn: {
-                at: 'Submit',
-                type: 5,
-                color: '#ffffff',
-                bg_color: '#000000',
-              },
-              color: '#000000',
-              title: 'Join Our Email List!',
-              bg_color: '#a9acfe',
-              description:
-                'Stay connected, be the first one to know, and get special offers. Join our email list for exclusive updates and exciting opportunities. Sign up today!',
-            },
+            body: freeTemplateVersion,
           },
         ])
         .select()

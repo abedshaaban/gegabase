@@ -20,8 +20,8 @@ export default function Page() {
           <h2 className="text-2xl">
             Create, publish, and collect emails instantly and build your email list.
           </h2>
-          <Link href="/login">
-            <Button variant={'default'}>Get started—it&apos;s free</Button>
+          <Link href="/free-template">
+            <Button variant={'default'}>Go to demo</Button>
           </Link>
         </div>
       </div>
