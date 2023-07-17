@@ -1,3 +1,4 @@
+import FQA from '@/components/FQA'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
@@ -20,9 +21,32 @@ export default function Page() {
           <h2 className="text-2xl">
             Create, publish, and collect emails instantly and build your email list.
           </h2>
-          <Link href="/free-template">
+          <Link href="/free/email">
             <Button variant={'default'}>Go to demo</Button>
           </Link>
+        </div>
+      </div>
+
+      <div className="w-full p-16 flex flex-col-reverse justify-center items-center lg:flex-row lg:justify-around">
+        <div className="h-fit text-center py-8 flex flex-col justify-start items-center gap-4 lg:w-80 lg:items-stretch lg:text-left lg:gap-8">
+          <h2 className="text-5xl  md:text-6xl">Easy to use editor!</h2>
+          <h3 className="text-2xl">
+            Just fill in the needed data and publish your template.
+          </h3>
+          <Link href="/free/email">
+            <Button variant={'default'}>Explore</Button>
+          </Link>
+        </div>
+
+        <div className="border rounded-3xl shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)] w-full h-full min-w-96 min-h-80 max-w-3xl max-h-[580px] lg:max-w-lg lg:max-h-[30rem]">
+          <img
+            src="/home/free-template.png"
+            alt="templates examples"
+            className="border rounded-3xl w-full"
+            loading="eager"
+            width="2241px"
+            height="1635px"
+          />
         </div>
       </div>
 
@@ -266,34 +290,24 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="w-full p-12 max-w-screen-xl">
-        <h2 className="mb-8 text-5xl">Frequently asked questions</h2>
-        <div className="grid pt-8 text-left border-t md:gap-16 md:grid-cols-2">
-          <div>
-            <div className="mb-10">
-              <h3 className="flex items-top mb-4 text-lg font-medium">
-                <svg
-                  className="flex-shrink-0 mr-2 w-5 h-5 text-gray-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                Why do i only see 50 emails in my records but i have more?
-              </h3>
-              <p>
-                Don&apos;t worry, all emails are available in our database, however, we
-                only show up to 50 in the records table. Also you can download them to a
-                csv file through the download button.
-              </p>
-            </div>
-          </div>
-        </div>
+      <div className="w-full p-3 max-w-screen-xl md:p-12">
+        <h3 className="mb-8 text-5xl pb-8 border-b">Frequently asked questions</h3>
+        <FQA
+          links={[
+            {
+              index: 1,
+              question: 'How much does GegaBase cost?',
+              answer:
+                'GegaBase is completely free till now. So hope on and create your templates.',
+            },
+            {
+              index: 2,
+              question: 'Why do I only see 50 emails in my records but I have more?',
+              answer:
+                "Don't worry, all emails are available in our database, however, we only show up to 50 in the records table. Also you can download them to a CSV file through the download button.",
+            },
+          ]}
+        />
       </div>
     </>
   )
