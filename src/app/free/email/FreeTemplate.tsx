@@ -55,6 +55,7 @@ export default function FreeTemplate() {
       color: '#ffffff',
       bg_color: '#000000',
     },
+    imgURL: '',
     color: '#000000',
     title: 'Join Our Email List!',
     bg_color: '#a9acfe',
@@ -233,6 +234,17 @@ export default function FreeTemplate() {
                     }}
                   />
                 </div>
+                <div className="grid grid-cols-[min-content] items-start gap-4 md:grid-cols-4">
+                  <Label className="text-right">Picture</Label>
+                  <Input
+                    className="col-span-3"
+                    id="picture"
+                    type="file"
+                    accept="image/png, image/jpg, image/webp"
+                    disabled={false}
+                    onChange={SaveAndPublishTemplate}
+                  />
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -375,6 +387,7 @@ export default function FreeTemplate() {
             color={template?.color}
             bg_color={template?.bg_color}
             btn={template?.btn}
+            imgURL={template?.imgURL}
           />
         </div>
       </section>

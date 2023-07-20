@@ -13,6 +13,7 @@ export interface Button {
 }
 
 export interface Template {
+  imgURL: string
   title: string
   description: string
   color: string

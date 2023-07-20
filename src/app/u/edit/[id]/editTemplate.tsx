@@ -2,7 +2,7 @@
 import { Icons } from '@/components/icons'
 import { Button } from '@/components/ui/button'
 import type { Template } from '@/types/template'
-import { useCallback, useEffect, useState } from 'react'
+import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import {
   Card,
   CardContent,
@@ -28,6 +28,7 @@ import { useSupabase } from '@/SupabaseProvider'
 import AuthenticatedRoute from '@/components/auth/AuthenticatedRoute'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
+import { nanoid } from 'nanoid'
 
 const BtnOneShow = dynamic(() => import('@/components/templateUI/btn-one'), {
   ssr: false,
@@ -49,8 +50,13 @@ const BtnSixShow = dynamic(() => import('@/components/templateUI/btn-six'), {
 })
 
 export default function EditTemplate({ params }: { params: { id: string } }) {
+  const IMGCDN = `${
+    process.env.NEXT_PUBLIC_SUPABASE_URL as string
+  }/storage/v1/object/public/profiles/`
+
   const { supabase, user } = useSupabase()
   const initialTemp: Template = {
+    imgURL: '',
     title: '',
     description: '',
     color: '',
@@ -63,7 +69,7 @@ export default function EditTemplate({ params }: { params: { id: string } }) {
     },
   }
   const { theme } = useTheme()
-
+  const [uploading, setUploading] = useState(false)
   const [tempName, setTempName] = useState('')
   const [template, setTemplate] = useState<Template>(initialTemp)
   const [loading, setLoading] = useState(false)
@@ -121,7 +127,14 @@ export default function EditTemplate({ params }: { params: { id: string } }) {
     }
   }, [user, getUserTemplate])
 
-  const MobilePreview = ({ bg_color, btn, color, description, title }: Template) => {
+  const MobilePreview = ({
+    bg_color,
+    btn,
+    color,
+    description,
+    title,
+    imgURL,
+  }: Template) => {
     return (
       <div
         style={{
@@ -131,8 +144,13 @@ export default function EditTemplate({ params }: { params: { id: string } }) {
         }}
         className={`w-[375px] h-[812px] border-[15px] rounded-[60px] md:fixed ${
           theme === 'light' ? 'border-neutral-950' : 'border-slate-600'
-        } pb-[30vh] flex flex-col justify-center items-center gap-3 origin-top-left`}
+        }  flex flex-col justify-center items-center gap-3 origin-top-left`}
       >
+        <img
+          src={imgURL ? IMGCDN + imgURL : ''}
+          alt=""
+          className="rounded-full w-48 h-48 object-cover object-center"
+        />
         <div className="p-3 text-center">
           <h1 className="text-xl font-bold mb-4">{title}</h1>
           <p>{description}</p>
@@ -201,6 +219,36 @@ export default function EditTemplate({ params }: { params: { id: string } }) {
         ) : null}
       </div>
     )
+  }
+
+  const uploadFile = async (e: ChangeEvent<HTMLInputElement>) => {
+    setUploading(true)
+    try {
+      if (!e.target.files || e.target.files.length === 0) {
+        console.log('no image selected')
+      } else {
+        let file = e.target.files[0]
+
+        const { data, error } = await supabase.storage
+          .from('profiles')
+          .upload(`${user.id}/${params?.id}/${nanoid(21)}`, file)
+
+        if (error) {
+          console.log(error)
+        }
+        if (data) {
+          setTemplate((prevTemplate) => ({
+            ...prevTemplate,
+            imgURL: data?.path,
+          }))
+          await updateTemplate(template)
+        }
+      }
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setUploading(false)
+    }
   }
 
   return (
@@ -285,6 +333,21 @@ export default function EditTemplate({ params }: { params: { id: string } }) {
                         setTemplate({ ...template, bg_color: color })
                       }}
                     />
+                  </div>
+                  <div className="grid grid-cols-[min-content] items-start gap-4 md:grid-cols-4">
+                    <Label className="text-right">Picture</Label>
+                    <div className="col-span-3">
+                      <Input
+                        id="picture"
+                        type="file"
+                        accept="image/png, image/jpg, image/webp"
+                        onChange={(e) => uploadFile(e)}
+                        disabled={uploading}
+                      />
+                      <p className="col-span-3 text-gray-500">
+                        Max file size: 2MB. PNG, JPG, WEBP
+                      </p>
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -430,6 +493,7 @@ export default function EditTemplate({ params }: { params: { id: string } }) {
               color={template?.color}
               bg_color={template?.bg_color}
               btn={template?.btn}
+              imgURL={template?.imgURL}
             />
           </div>
         </section>

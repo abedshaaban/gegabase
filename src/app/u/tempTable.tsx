@@ -15,7 +15,6 @@ import { useSupabase } from '@/SupabaseProvider'
 import Link from 'next/link'
 import { nanoid } from 'nanoid'
 import { useToast } from '@/components/ui/use-toast'
-import { useRouter } from 'next/navigation'
 import {
   Dialog,
   DialogContent,
@@ -42,6 +41,7 @@ export default function TempTable() {
       color: '#ffffff',
       bg_color: '#000000',
     },
+    imgURL: '',
     color: '#000000',
     title: 'Join Our Email List!',
     bg_color: '#a9acfe',
@@ -73,10 +73,11 @@ export default function TempTable() {
     }
     setLoading(false)
   }
-  const GetFreeTemplate = async () => {
+  const GetFreeTemplate = () => {
     if (window?.localStorage?.getItem('free-template')) {
       const gotFreeTemplate = window?.localStorage?.getItem('free-template')
       setFreeTemplateVersion(JSON.parse(gotFreeTemplate as any))
+      window?.localStorage?.removeItem('free-template')
     }
   }
 

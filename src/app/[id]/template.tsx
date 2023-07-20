@@ -1,5 +1,5 @@
 'use client'
-import { Template } from '@/types/template'
+import type { Template } from '@/types/template'
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import { validate } from 'email-validator'
@@ -31,6 +31,9 @@ async function GetTemplateRes(id: string) {
 }
 
 export default function Template() {
+  const IMGCDN = `${
+    process.env.NEXT_PUBLIC_SUPABASE_URL as string
+  }/storage/v1/object/public/profiles/`
   const { supabase } = useSupabase()
   const pathname = usePathname()
   const templateID = pathname.replace('/', '')
@@ -97,18 +100,22 @@ export default function Template() {
       ) : (
         <div
           style={{ color: template?.color, backgroundColor: template?.bg_color }}
-          className="w-full h-auto min-h-screen pt-16 px-4 pb-8 absolute top-0 flex flex-col justify-center items-center gap-4 z-[999]"
+          className="w-full h-auto min-h-screen px-4 absolute top-0 flex flex-col justify-center items-center gap-4 z-[999]"
         >
+          <img
+            src={template?.imgURL ? IMGCDN + template?.imgURL : ''}
+            alt=""
+            loading="eager"
+            className="rounded-full w-48 h-48 object-cover object-center"
+          />
           <div className="w-full max-w-lg text-center">
             <h1 className="w-full text-xl font-bold mb-4">{template?.title}</h1>
             <p>{template?.description}</p>
           </div>
-
           <div style={{ color: template?.color }} className="w-full h-5 text-center">
             <div>{successLabel}</div>
             <div>{errorLabel}</div>
           </div>
-
           {template?.btn?.type === 0 ? (
             <BtnOne
               key={template?.btn?.type}
