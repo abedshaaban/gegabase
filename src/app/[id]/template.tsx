@@ -102,12 +102,14 @@ export default function Template() {
           style={{ color: template?.color, backgroundColor: template?.bg_color }}
           className="w-full h-auto min-h-screen px-4 absolute top-0 flex flex-col justify-center items-center gap-4 z-[999]"
         >
-          <img
-            src={template?.imgURL ? IMGCDN + template?.imgURL : ''}
-            alt=""
-            loading="eager"
-            className="rounded-full w-48 h-48 object-cover object-center"
-          />
+          {template?.imgURL ? (
+            <img
+              src={template?.imgURL ? IMGCDN + template?.imgURL : ''}
+              alt=""
+              loading="eager"
+              className="rounded-full w-48 h-48 object-cover object-center"
+            />
+          ) : null}
           <div className="w-full max-w-lg text-center">
             <h1 className="w-full text-xl font-bold mb-4">{template?.title}</h1>
             <p>{template?.description}</p>

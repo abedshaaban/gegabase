@@ -146,11 +146,13 @@ export default function EditTemplate({ params }: { params: { id: string } }) {
           theme === 'light' ? 'border-neutral-950' : 'border-slate-600'
         }  flex flex-col justify-center items-center gap-3 origin-top-left`}
       >
-        <img
-          src={imgURL ? IMGCDN + imgURL : ''}
-          alt=""
-          className="rounded-full w-48 h-48 object-cover object-center"
-        />
+        {imgURL ? (
+          <img
+            src={imgURL ? IMGCDN + imgURL : ''}
+            alt=""
+            className="rounded-full w-48 h-48 object-cover object-center"
+          />
+        ) : null}
         <div className="p-3 text-center">
           <h1 className="text-xl font-bold mb-4">{title}</h1>
           <p>{description}</p>
@@ -251,6 +253,14 @@ export default function EditTemplate({ params }: { params: { id: string } }) {
     }
   }
 
+  const handleRemoveImage = async () => {
+    setTemplate((prevTemplate) => ({
+      ...prevTemplate,
+      imgURL: '',
+    }))
+    await updateTemplate(template)
+  }
+
   return (
     <AuthenticatedRoute>
       <div className="w-full h-full">
@@ -344,9 +354,14 @@ export default function EditTemplate({ params }: { params: { id: string } }) {
                         onChange={(e) => uploadFile(e)}
                         disabled={uploading}
                       />
-                      <p className="col-span-3 text-gray-500">
-                        Max file size: 2MB. PNG, JPG, WEBP
-                      </p>
+                      <div className="col-span-3 flex flex-row items-center">
+                        <p className="text-gray-500">
+                          Max file size: 2MB. PNG, JPG, WEBP
+                        </p>
+                        <Button variant={'link'} onClick={handleRemoveImage}>
+                          remove image
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </div>
