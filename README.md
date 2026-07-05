@@ -8,7 +8,11 @@ Gega Base is a Next.js app for creating lightweight email signup pages. Users ca
 
 ## Demo
 
-[Watch the app walkthrough on YouTube](https://youtu.be/lhDjTZTDJTY?si=jK0lfCtpptrv4OBu)
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=lhDjTZTDJTY" target="_blank">
+    <img src="https://img.youtube.com/vi/lhDjTZTDJTY/hqdefault.jpg" alt="Watch the demo video" width="560">
+  </a>
+</p>
 
 ## Features
 
